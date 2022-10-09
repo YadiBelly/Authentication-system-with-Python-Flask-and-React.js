@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPasword] = useState("");
   return (
     <>
       <div class="mb-3 row">
@@ -8,7 +10,12 @@ export const Signup = () => {
           Email
         </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail" />
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            class="form-control"
+            id="staticEmail"
+          />
         </div>
       </div>
       <div class="mb-3 row">
@@ -16,8 +23,14 @@ export const Signup = () => {
           Password
         </label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword" />
+          <input
+            type="text"
+            onChange={(e) => setPasword(e.target.value)}
+            class="form-control"
+            id="staticPassword"
+          />
         </div>
+        <button onClick={() => {}}></button>
       </div>
     </>
   );

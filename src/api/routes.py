@@ -16,3 +16,12 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/signup', methods=['POST'])
+def sign_Up():
+
+    data= request.get_json()
+    send_data = User(email=data["email"], password=data["password"])
+    db.session.add(send_data)
+    db.session.commit()
+    return jsonify({"msg":"user created"}), 200;                  
