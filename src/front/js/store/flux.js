@@ -17,10 +17,18 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       // Use getActions to call a function within a fuction
-      createUser: () => {
+      createUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-bv45its429c.ws-us70.gitpod.io/api/signup"
-        );
+          "https://3001-yadibelly-authenticatio-xq05h6r4vus.ws-us70.gitpod.io/api/signup",
+          {
+            method: "POST",
+            headers: { "Content-Type": "applications/json" },
+            body: JSON.stringify({ email: email, password: password }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log("error", error));
       },
 
       getMessage: async () => {

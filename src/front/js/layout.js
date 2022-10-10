@@ -6,7 +6,7 @@ import { Login } from "./pages/Login";
 import { Private } from "./pages/Dashboard";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
+// import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext.js";
 
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
+  const { store, actions } = useContext(Context);
   return (
     <>
       <div class="mb-3 row">
@@ -30,7 +32,13 @@ export const Signup = () => {
             id="staticPassword"
           />
         </div>
-        <button onClick={() => {}}></button>
+        <button
+          onClick={() => {
+            actions.createUser({ email: email, password: password });
+          }}
+        >
+          click here
+        </button>
       </div>
     </>
   );
