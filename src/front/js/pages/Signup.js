@@ -34,7 +34,7 @@ export const Signup = () => {
         </div>
         <button
           onClick={() => {
-            actions.createUser({ email: email, password: password });
+            actions.createUser(email, password);
           }}
         >
           click here
