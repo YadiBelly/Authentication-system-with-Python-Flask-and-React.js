@@ -29,11 +29,11 @@ def sign_Up():
     return jsonify({"msg":"user created"}), 200;
 
 @api.route('/verifyUser', methods=['GET'])
+@jwt_required()
 def verify_User():
+    data= request.get_json()
     currentUser = get_jwt_identity()
-    user = User.query.filter_by(email=data["email"]).first()
-
-
+    user = User.query.filter_by(email=currentUser).first()
     return jsonify({"email":user.email}), 200;                             
     
 @api.route('/login', methods=['POST'])

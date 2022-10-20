@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/verifyUser",
           {
             method: "GET",
-            headers: { "Authorization:": `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${token}` },
           }
         )
           .then((response) => response.json())
