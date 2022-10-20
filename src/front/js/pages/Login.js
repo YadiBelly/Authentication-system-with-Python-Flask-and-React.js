@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext.js";
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPasword] = useState("");
+  const { store, actions } = useContext(Context);
   return (
     <>
       <div class="mb-3 row">
@@ -8,7 +12,12 @@ export const Login = () => {
           Email
         </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail" />
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            class="form-control"
+            id="staticEmail"
+          />
         </div>
       </div>
       <div class="mb-3 row">
@@ -16,8 +25,20 @@ export const Login = () => {
           Password
         </label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword" />
+          <input
+            type="password"
+            onChange={(e) => setPasword(e.target.value)}
+            class="form-control"
+            id="inputPassword"
+          />
         </div>
+        <button
+          onClick={() => {
+            actions.loginUser(email, password);
+          }}
+        >
+          click here
+        </button>
       </div>
     </>
   );

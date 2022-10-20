@@ -26,7 +26,15 @@ def sign_Up():
     send_data = User(email=data["email"], password=data["password"])
     db.session.add(send_data)
     db.session.commit()
-    return jsonify({"msg":"user created"}), 200;                  
+    return jsonify({"msg":"user created"}), 200;
+
+@api.route('/verifyUser', methods=['GET'])
+def verify_User():
+    currentUser = get_jwt_identity()
+    user = User.query.filter_by(email=data["email"]).first()
+
+
+    return jsonify({"email":user.email}), 200;                             
     
 @api.route('/login', methods=['POST'])
 def login():

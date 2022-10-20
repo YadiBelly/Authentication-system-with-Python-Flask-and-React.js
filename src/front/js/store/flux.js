@@ -1,28 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      message: null,
-      demo: [
-        {
-          title: "FIRST",
-          background: "white",
-          initial: "white",
-        },
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
-      ],
+      getToken: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
       createUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-xq05h6r4vus.ws-us70.gitpod.io/api/signup",
+          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/signup",
           {
             method: "POST",
-            headers: { "Content-Type": "applications/json" },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email, password: password }),
           }
         )
@@ -30,7 +18,31 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => console.log(data))
           .catch((error) => console.log("error", error));
       },
-
+      loginUser: (email, password) => {
+        fetch(
+          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, password: password }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => getActions().verifyUser(data.access_token))
+          .catch((error) => console.log("error", error));
+      },
+      verifyUser: (token) => {
+        fetch(
+          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/verifyUser",
+          {
+            method: "GET",
+            headers: { "Authorization:": `Bearer ${token}` },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => setStore({ getToken: data }))
+          .catch((error) => console.log("error", error));
+      },
       getMessage: async () => {
         try {
           // fetching data from the backend
