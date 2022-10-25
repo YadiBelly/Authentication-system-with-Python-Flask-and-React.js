@@ -28,13 +28,19 @@ def sign_Up():
     db.session.commit()
     return jsonify({"msg":"user created"}), 200;
 
+# @api.route('/verify', methods=['GET'])
+# @jwt_required()
+# def verify():
+#     currentUser = get_jwt_identity()
+#     user = User.query.filter_by(email=currentUser).first()
+#     return jsonify({"email":user.email}), 200; 
+
 @api.route('/verifyUser', methods=['GET'])
 @jwt_required()
-def verify_User():
-    data= request.get_json()
+def verify():
     currentUser = get_jwt_identity()
     user = User.query.filter_by(email=currentUser).first()
-    return jsonify({"email":user.email}), 200;                             
+    return jsonify({"email":user.email}), 200                         
     
 @api.route('/login', methods=['POST'])
 def login():
@@ -49,6 +55,5 @@ def login():
     if data["email"] != user.email:
         raise APIException("user not found", status_code=404)
     else:
-        access_token=create_access_token(identity=user.email)
+        access_token=create_access_token(identity=data["email"])
         return jsonify(access_token=access_token)
-    return jsonify({"msg":"user created"}), 200;

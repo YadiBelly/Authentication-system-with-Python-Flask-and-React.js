@@ -5,6 +5,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
   const { store, actions } = useContext(Context);
+  console.log(store.user);
   return (
     <>
       <div class="mb-3 row">

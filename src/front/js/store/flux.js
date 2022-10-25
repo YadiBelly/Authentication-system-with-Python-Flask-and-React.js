@@ -1,13 +1,13 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      getToken: {},
+      user: {},
     },
     actions: {
       // Use getActions to call a function within a fuction
       createUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/signup",
+          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/signup",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       loginUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/login",
+          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/login",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -28,19 +28,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         )
           .then((response) => response.json())
-          .then((data) => getActions().verifyUser(data.access_token))
+          .then((result) => getActions().verifyUser(result.access_token))
           .catch((error) => console.log("error", error));
       },
       verifyUser: (token) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-0kb5if0yaqs.ws-us71.gitpod.io/api/verifyUser",
+          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/verifyUser",
           {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
           }
         )
           .then((response) => response.json())
-          .then((data) => setStore({ getToken: data }))
+          .then((result) => setStore({ user: result }))
           .catch((error) => console.log("error", error));
       },
       getMessage: async () => {
