@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { Signup } from "./pages/Signup";
 import { Login } from "./pages/Login";
-import { Private } from "./pages/Dashboard";
+import { Private } from "./pages/Private";
 
 import { Home } from "./pages/home";
 // import { Demo } from "./pages/demo";

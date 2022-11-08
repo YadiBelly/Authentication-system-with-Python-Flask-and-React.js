@@ -1,13 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user: {},
+      user: false,
     },
     actions: {
       // Use getActions to call a function within a fuction
+      Logout: () => {
+        setStore({ user: false });
+      },
       createUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/signup",
+          "https://3001-yadibelly-authenticatio-jv8tyn21aza.ws-us74.gitpod.io/api/signup",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -20,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       loginUser: (email, password) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/login",
+          "https://3001-yadibelly-authenticatio-jv8tyn21aza.ws-us74.gitpod.io/api/login",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -33,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       verifyUser: (token) => {
         fetch(
-          "https://3001-yadibelly-authenticatio-lviagjake4k.ws-us72.gitpod.io/api/verifyUser",
+          "https://3001-yadibelly-authenticatio-jv8tyn21aza.ws-us74.gitpod.io/api/verifyUser",
           {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
